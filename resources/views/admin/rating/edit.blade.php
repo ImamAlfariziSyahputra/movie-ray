@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Add Rating
+Edit Rating
 @endsection
 
 @section('content')
@@ -12,8 +12,9 @@ Add Rating
         <div class="card-body">
             {{-- Content --}}
             <div class="">
-                <form action="{{ route('ratings.store') }}" method="POST">
+                <form action="{{ route('ratings.update', $rating) }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="number" class="font-weight-bold">
                             Number
@@ -23,7 +24,7 @@ Add Rating
                             class="form-control @error('number') is-invalid @enderror" 
                             name="number" 
                             id="number" 
-                            value="{{ old('number') }}"
+                            value="{{ old('number', $rating->number) }}"
                             placeholder="Enter number..."
                         >
                         @error('number')

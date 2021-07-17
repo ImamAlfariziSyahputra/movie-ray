@@ -9,15 +9,20 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class RatingController extends Controller
 {
+    private $perPage = 5;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $ratings = $request->get('keyword')
+            ? Rating::search($request->keyword)->paginate($this->perPage)
+            : Rating::paginate($this->perPage);
+
         return view('admin.rating.index', [
-            'ratings' => Rating::all(),
+            'ratings' => $ratings->withQueryString(),
         ]);
     }
 
@@ -84,7 +89,9 @@ class RatingController extends Controller
      */
     public function edit(Rating $rating)
     {
-        //
+        return view('admin.rating.edit', [
+            'rating' => $rating,
+        ]);
     }
 
     /**
@@ -96,7 +103,30 @@ class RatingController extends Controller
      */
     public function update(Request $request, Rating $rating)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'number' => 'required|integer|between:1,5|unique:ratings,number,'.$rating->id,
+            ],
+            [],
+            [],
+        );
+        
+        if($validator->fails()) {
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+        
+        try {
+            $rating->update([
+                'number' => $request->number,
+            ]);
+
+            Alert::success('Edit Rating', 'Success');
+            return redirect()->route('ratings.index');
+        } catch (\Throwable $th) {
+            Alert::error('Edit Rating', $th->getMessage());
+            return redirect()->back()->withInput($request->all());
+        }
     }
 
     /**
@@ -107,6 +137,14 @@ class RatingController extends Controller
      */
     public function destroy(Rating $rating)
     {
-        //
+        try {
+            $rating->delete();
+
+            Alert::success('Delete Rating', 'Success');
+        } catch (\Throwable $th) {
+            Alert::error('Delete Rating', $th->getMessage());
+        }
+
+        return redirect()->back();
     }
 }

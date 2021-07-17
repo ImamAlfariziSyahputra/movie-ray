@@ -39,5 +39,8 @@
         <script src="{{ asset('sbadmin/js/scripts.js') }}"></script>
 
         @include('sweetalert::alert')
+
+        @stack('custJs')
+
     </body>
 </html>

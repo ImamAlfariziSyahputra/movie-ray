@@ -10,4 +10,9 @@ class Rating extends Model
     use HasFactory;
 
     protected $fillable = ['number'];
+
+    public function scopeSearch($query, $number)
+    {
+        return $query->where('number', 'LIKE', "%$number%");
+    }
 }
