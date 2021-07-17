@@ -28,6 +28,6 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        return view('admin.rating.index');
+        return view('admin.dashboard.index');
     }
 }

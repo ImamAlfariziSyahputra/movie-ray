@@ -20,7 +20,16 @@
             <!-- End Sidebar Nav -->
             <div id="layoutSidenav_content">
                 <main>
-                    @yield('content')
+                    <div class="container-fluid">
+                        <h2 class="mt-2">
+                            @yield('title')
+                        </h2>
+                        
+                        @yield('bc')
+
+                        @yield('content')
+
+                    </div>
                 </main>
                 @include('layouts._dashboard.footer')
             </div>
