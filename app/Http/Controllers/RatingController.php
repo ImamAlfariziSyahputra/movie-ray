@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Rating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RatingController extends Controller
 {
@@ -37,7 +39,30 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'number' => 'required|integer|between:1,5|unique:ratings,number',
+            ],
+            [],
+            [],
+        );
+        
+        if($validator->fails()) {
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+        
+        try {
+            Rating::create([
+                'number' => $request->number,
+            ]);
+
+            Alert::success('Add Rating', 'Success');
+            return redirect()->route('ratings.index');
+        } catch (\Throwable $th) {
+            Alert::error('Add Rating', $th->getMessage());
+            return redirect()->back()->withInput($request->all());
+        }
     }
 
     /**
