@@ -4,6 +4,10 @@
 Rating
 @endsection
 
+@section('bc')
+{{ Breadcrumbs::render('rating') }}
+@endsection
+
 @section('content')
 
 <div class="col-md-12 p-0">

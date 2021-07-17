@@ -27,7 +27,7 @@
                 </a>
                 <a 
                     class="nav-link" 
-                    href=""
+                    href="#"
                 >
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-star"></i>
@@ -36,7 +36,7 @@
                 </a>
                 <a 
                     class="nav-link" 
-                    href=""
+                    href="#"
                 >
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-star"></i>
@@ -45,7 +45,7 @@
                 </a>
                 <a 
                     class="nav-link" 
-                    href=""
+                    href="#"
                 >
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-star"></i>
@@ -54,7 +54,7 @@
                 </a>
                 <a 
                     class="nav-link" 
-                    href=""
+                    href="#"
                 >
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-star"></i>
@@ -63,7 +63,7 @@
                 </a>
                 <a 
                     class="nav-link" 
-                    href=""
+                    href="#"
                 >
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-star"></i>
