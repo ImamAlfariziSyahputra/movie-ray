@@ -44,4 +44,10 @@ Breadcrumbs::for('addGenre', function (BreadcrumbTrail $trail) {
     $trail->parent('genre');
     $trail->push('Add', route('genres.create'));
 });
+// Dashboard > Genre > Edit > [name]
+Breadcrumbs::for('editGenre', function (BreadcrumbTrail $trail, $genre) {
+    $trail->parent('genre');
+    $trail->push('Edit', route('genres.edit', $genre));
+    $trail->push($genre->name, route('genres.edit', $genre));
+});
 

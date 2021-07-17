@@ -14,7 +14,7 @@ Genres
     <div class="card">
         <div class="card-header d-flex justify-content-between no-gutters">
             <div class="col-md-6">
-                <form action="" method="GET" class="">
+                <form action="{{ route('genres.index') }}" method="GET" class="">
                     <div class="input-group">
                         <input 
                             class="form-control"
@@ -48,17 +48,13 @@ Genres
                         {{ $genre->name }}
                     </div>
                     <div class="action d-flex">
-                        {{-- Detail --}}
-                        <a href="" class="btn btn-sm btn-info mr-2">
-                            <i class="fas fa-eye"></i>
-                        </a>
                         {{-- Edit --}}
-                        <a href="" class="btn btn-sm btn-success mr-2">
+                        <a href="{{ route('genres.edit', $genre) }}" class="btn btn-sm btn-success mr-2">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                         {{-- Delete --}}
                         <form 
-                            action="" 
+                            action="{{ route('genres.destroy', $genre) }}" 
                             method="POST" 
                             role="alert"
                         >
@@ -73,6 +69,11 @@ Genres
                 @endforeach
             </div>
         </div>
+        @if ($genres->hasPages())
+        <div class="card-footer">
+            {{ $genres->links('vendor.pagination.bootstrap-4') }}
+        </div>
+        @endif
     </div>
 
 </div>

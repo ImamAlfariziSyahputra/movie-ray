@@ -27,7 +27,7 @@
                 </a>
                 <a 
                     class="nav-link {{ setActive([
-                        'genres.index', 'genres.create', 
+                        'genres.index', 'genres.create', 'genres.edit'
                     ]) }}" 
                     href="{{ route('genres.index') }}"
                 >

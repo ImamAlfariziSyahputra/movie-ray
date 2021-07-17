@@ -9,17 +9,20 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class GenreController extends Controller
 {
+    private $perPage = 5;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $genres = Genre::all();
+        $genres = $request->get('keyword')
+            ? Genre::search($request->keyword)->paginate($this->perPage)
+            : Genre::paginate($this->perPage);
 
         return view('admin.genre.index', [
-            'genres' => $genres,
+            'genres' => $genres->withQueryString(),
         ]);
     }
 
@@ -86,7 +89,9 @@ class GenreController extends Controller
      */
     public function edit(Genre $genre)
     {
-        //
+        return view('admin.genre.edit', [
+            'genre' => $genre,
+        ]);
     }
 
     /**
@@ -98,7 +103,30 @@ class GenreController extends Controller
      */
     public function update(Request $request, Genre $genre)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|string|min:3|max:20|unique:genres,name,'.$genre->id,
+            ],
+            [],
+            [],
+        );
+
+        if($validator->fails()) {
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+
+        try {
+            $genre->update([
+                'name' => $request->name,
+            ]);
+
+            Alert::success('Edit Genre', 'Success');
+            return redirect()->route('genres.index');
+        } catch (\Throwable $th) {
+            Alert::error('Edit Genre', 'Error : '.$th->getMessage());
+            return redirect()->back()->withInput($request->all());
+        }
     }
 
     /**
@@ -109,6 +137,14 @@ class GenreController extends Controller
      */
     public function destroy(Genre $genre)
     {
-        //
+        try {
+            $genre->delete();
+
+            Alert::success('Delete Genre', 'Success');
+        } catch (\Throwable $th) {
+            Alert::error('Delete Genre', 'Error : '.$th->getMessage());
+        }
+
+        return redirect()->back();
     }
 }
