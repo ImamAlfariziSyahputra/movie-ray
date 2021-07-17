@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GenreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RatingController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,12 @@ Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
+    // Dashboard
+    Route::get('/', [HomeController::class, 'dashboard'])->name('dashboard');
+    // Ratings
+    Route::resource('/ratings', RatingController::class);
+    // Genres
+    Route::resource('/genres', GenreController::class);
 
-Route::resource('/ratings', RatingController::class);
+});

@@ -38,7 +38,7 @@
                     <div class="action d-flex">
                         {{-- Detail --}}
                         <a href="" class="btn btn-sm btn-info mr-2">
-                            <i class="fas fa-pencil-alt"></i>
+                            <i class="fas fa-eye"></i>
                         </a>
                         {{-- Edit --}}
                         <a href="" class="btn btn-sm btn-success mr-2">

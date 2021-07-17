@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RatingSeeder::class,
+            GenreSeeder::class,
         ]);
     }
 }

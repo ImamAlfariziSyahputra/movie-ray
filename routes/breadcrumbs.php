@@ -13,6 +13,7 @@ Breadcrumbs::for('dashboard', function (BreadcrumbTrail $trail) {
     $trail->push('Dashboard', route('dashboard'));
 });
 
+//* Rating
 // Dashboard > Rating
 Breadcrumbs::for('rating', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
@@ -31,3 +32,16 @@ Breadcrumbs::for('editRating', function (BreadcrumbTrail $trail, $rating) {
     $trail->push('Edit', route('ratings.edit', $rating));
     $trail->push($rating->number, route('ratings.edit', $rating));
 });
+
+//* Genre
+// Dashboard > Genre
+Breadcrumbs::for('genre', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Genre', route('genres.index'));
+});
+// Dashboard > Genre > Add
+Breadcrumbs::for('addGenre', function (BreadcrumbTrail $trail) {
+    $trail->parent('genre');
+    $trail->push('Add', route('genres.create'));
+});
+

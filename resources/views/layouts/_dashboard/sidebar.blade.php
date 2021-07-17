@@ -26,8 +26,10 @@
                     Ratings
                 </a>
                 <a 
-                    class="nav-link" 
-                    href="#"
+                    class="nav-link {{ setActive([
+                        'genres.index', 'genres.create', 
+                    ]) }}" 
+                    href="{{ route('genres.index') }}"
                 >
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-star"></i>
