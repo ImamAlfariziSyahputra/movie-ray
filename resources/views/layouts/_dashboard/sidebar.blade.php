@@ -48,8 +48,10 @@
                     Directors
                 </a>
                 <a 
-                    class="nav-link" 
-                    href="#"
+                    class="nav-link {{ setActive([
+                        'casts.index', 'casts.create', 'casts.edit'
+                    ]) }}" 
+                    href="{{ route('casts.index') }}"
                 >
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-star"></i>

@@ -69,3 +69,26 @@ Breadcrumbs::for('editDirector', function (BreadcrumbTrail $trail, $director) {
     $trail->push($director->name, route('directors.edit', $director));
 });
 
+//* Casts
+// Dashboard > Casts
+Breadcrumbs::for('cast', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Casts', route('casts.index'));
+});
+// Dashboard > Casts > Add
+Breadcrumbs::for('addCast', function (BreadcrumbTrail $trail) {
+    $trail->parent('cast');
+    $trail->push('Add', route('casts.create'));
+});
+// Dashboard > Casts > Edit > [name]
+Breadcrumbs::for('editCast', function (BreadcrumbTrail $trail, $cast) {
+    $trail->parent('cast');
+    $trail->push('Edit', route('casts.edit', $cast));
+    $trail->push($cast->name, route('casts.edit', $cast));
+});
+// Dashboard > Casts > Detail > [name]
+Breadcrumbs::for('detailCast', function (BreadcrumbTrail $trail, $cast) {
+    $trail->parent('cast');
+    $trail->push('Detail', route('casts.show', $cast));
+    $trail->push($cast->name, route('casts.show', $cast));
+});

@@ -14,9 +14,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            RatingSeeder::class,
-            GenreSeeder::class,
-            DirectorSeeder::class,
+            // UserSeeder::class,
+            // RatingSeeder::class,
+            // GenreSeeder::class,
+            // DirectorSeeder::class,
+            // CastSeeder::class,
         ]);
     }
 }

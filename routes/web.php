@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CastController;
 use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\HomeController;
@@ -29,6 +30,11 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
     // Genres
     Route::resource('/genres', GenreController::class)->except(['show']);
     // Directors
-    Route::resource('/directors', DirectorController::class);
+    Route::resource('/directors', DirectorController::class)->except(['show']);
+    // Casts
+    Route::resource('/casts', CastController::class);
 
+    Route::group(['prefix' => 'filemanager'], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 });
