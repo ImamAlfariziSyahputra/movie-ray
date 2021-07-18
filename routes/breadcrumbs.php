@@ -51,3 +51,21 @@ Breadcrumbs::for('editGenre', function (BreadcrumbTrail $trail, $genre) {
     $trail->push($genre->name, route('genres.edit', $genre));
 });
 
+//* Directors
+// Dashboard > Directors
+Breadcrumbs::for('director', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Directors', route('directors.index'));
+});
+// Dashboard > Directors > Add
+Breadcrumbs::for('addDirector', function (BreadcrumbTrail $trail) {
+    $trail->parent('director');
+    $trail->push('Add', route('directors.create'));
+});
+// Dashboard > Directors > Edit > [name]
+Breadcrumbs::for('editDirector', function (BreadcrumbTrail $trail, $director) {
+    $trail->parent('director');
+    $trail->push('Edit', route('directors.edit', $director));
+    $trail->push($director->name, route('directors.edit', $director));
+});
+

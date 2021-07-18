@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DirectorController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RatingController;
@@ -24,8 +25,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
     // Dashboard
     Route::get('/', [HomeController::class, 'dashboard'])->name('dashboard');
     // Ratings
-    Route::resource('/ratings', RatingController::class);
+    Route::resource('/ratings', RatingController::class)->except(['show']);
     // Genres
-    Route::resource('/genres', GenreController::class);
+    Route::resource('/genres', GenreController::class)->except(['show']);
+    // Directors
+    Route::resource('/directors', DirectorController::class);
 
 });

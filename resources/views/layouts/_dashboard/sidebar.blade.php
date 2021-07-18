@@ -37,8 +37,10 @@
                     Genres
                 </a>
                 <a 
-                    class="nav-link" 
-                    href="#"
+                    class="nav-link {{ setActive([
+                        'directors.index', 'directors.create', 'directors.edit',
+                    ]) }}" 
+                    href="{{ route('directors.index') }}"
                 >
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-star"></i>
