@@ -26,6 +26,16 @@ class DirectorController extends Controller
         ]);
     }
 
+    public function getDirectors(Request $request)
+    {
+        $directors = [];
+        $directors = $request->get('q')
+            ? Director::select('id', 'name')->search($request->q)->get()
+            : Director::select('id', 'name')->limit(5)->get();
+
+        return response()->json($directors);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

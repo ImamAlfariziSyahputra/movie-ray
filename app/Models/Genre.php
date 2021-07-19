@@ -15,4 +15,9 @@ class Genre extends Model
     {
         return $query->where('name', 'LIKE', "%$name%");
     }
+
+    public function movie()
+    {
+        return $this->belongsToMany(Movie::class, 'cast_movie');
+    }
 }

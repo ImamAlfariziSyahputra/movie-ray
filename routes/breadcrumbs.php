@@ -92,3 +92,27 @@ Breadcrumbs::for('detailCast', function (BreadcrumbTrail $trail, $cast) {
     $trail->push('Detail', route('casts.show', $cast));
     $trail->push($cast->name, route('casts.show', $cast));
 });
+
+//* Movies
+// Dashboard > Movies
+Breadcrumbs::for('movie', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Movies', route('movies.index'));
+});
+// Dashboard > Movies > Add
+Breadcrumbs::for('addMovie', function (BreadcrumbTrail $trail) {
+    $trail->parent('movie');
+    $trail->push('Add', route('movies.create'));
+});
+// Dashboard > Movies > Edit > [name]
+Breadcrumbs::for('editMovie', function (BreadcrumbTrail $trail, $movie) {
+    $trail->parent('movie');
+    $trail->push('Edit', route('movies.edit', $movie));
+    $trail->push($movie->title, route('movies.edit', $movie));
+});
+// Dashboard > Movies > Detail > [name]
+Breadcrumbs::for('detailMovie', function (BreadcrumbTrail $trail, $movie) {
+    $trail->parent('movie');
+    $trail->push('Detail', route('movies.show', $movie));
+    $trail->push($movie->title, route('movies.show', $movie));
+});

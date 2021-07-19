@@ -49,7 +49,7 @@
                 </a>
                 <a 
                     class="nav-link {{ setActive([
-                        'casts.index', 'casts.create', 'casts.edit'
+                        'casts.index', 'casts.create', 'casts.edit', 'casts.show'
                     ]) }}" 
                     href="{{ route('casts.index') }}"
                 >
@@ -59,8 +59,10 @@
                     Cast
                 </a>
                 <a 
-                    class="nav-link" 
-                    href="#"
+                    class="nav-link {{ setActive([
+                        'movies.index', 'movies.create', 'movies.edit', 'movies.show'
+                    ]) }}" 
+                    href="{{ route('movies.index') }}"
                 >
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-star"></i>

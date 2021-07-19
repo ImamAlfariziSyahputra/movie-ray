@@ -26,6 +26,16 @@ class GenreController extends Controller
         ]);
     }
 
+    public function getGenres(Request $request)
+    {
+        $genres = [];
+        $genres = $request->has('q')
+            ? Genre::select('id', 'name')->search($request->q)->get()
+            : Genre::select('id', 'name')->limit(5)->get();
+
+        return response()->json($genres);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

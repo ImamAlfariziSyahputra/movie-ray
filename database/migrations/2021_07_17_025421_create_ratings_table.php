@@ -15,7 +15,7 @@ class CreateRatingsTable extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->tinyInteger('number');
+            $table->tinyInteger('number')->unique();
             $table->timestamps();
         });
     }

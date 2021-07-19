@@ -26,6 +26,16 @@ class CastController extends Controller
         ]);
     }
 
+    public function selectInput(Request $request)
+    {
+        $casts = [];
+        $casts = $request->has('q')
+            ? Cast::select('id', 'name')->search($request->q)->get()
+            : Cast::select('id', 'name')->limit(5)->get();
+
+        return response()->json($casts);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

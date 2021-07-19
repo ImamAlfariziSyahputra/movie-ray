@@ -15,4 +15,9 @@ class Director extends Model
     {
         return $query->where('name', 'LIKE', "%$name%");
     }
+
+    public function movie()
+    {
+        return $this->hasMany(Movie::class);
+    }
 }

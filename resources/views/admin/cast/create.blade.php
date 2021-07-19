@@ -18,6 +18,7 @@ Add Cast
             <div class="">
                 <form action="{{ route('casts.store') }}" method="POST">
                     @csrf
+                    {{-- Name --}}
                     <div class="form-group">
                         <label for="name" class="font-weight-bold">
                             Name
@@ -58,8 +59,9 @@ Add Cast
                         </div>
                     </div> --}}
 
+                    {{-- Image --}}
                     <div class="form-group">
-                        <label for="name" class="font-weight-bold">
+                        <label for="image" class="font-weight-bold">
                             Image
                         </label>
                         <div class="input-group mb-3">
@@ -86,6 +88,7 @@ Add Cast
                     {{-- img preview --}}
                     <div id="holder" class="mb-3">
                     </div>
+                    {{-- Action --}}
                     <div class="float-right">
                         <a href="{{ route('casts.index') }}" class="btn btn-warning text-white">
                             Back
