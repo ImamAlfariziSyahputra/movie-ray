@@ -123,11 +123,22 @@ Breadcrumbs::for('role', function (BreadcrumbTrail $trail) {
     $trail->parent('dashboard');
     $trail->push('Roles', route('roles.index'));
 });
+// Dashboard > Roles > Add
+Breadcrumbs::for('addRole', function (BreadcrumbTrail $trail) {
+    $trail->parent('role');
+    $trail->push('Add', route('roles.create'));
+});
 // Dashboard > Roles > Detail > [name]
 Breadcrumbs::for('detailRole', function (BreadcrumbTrail $trail, $role) {
     $trail->parent('role');
     $trail->push('Detail', route('roles.show', $role));
     $trail->push($role->name, route('roles.show', $role));
+});
+// Dashboard > Roles > Edit > [name]
+Breadcrumbs::for('editRole', function (BreadcrumbTrail $trail, $role) {
+    $trail->parent('role');
+    $trail->push('Edit', route('roles.edit', $role));
+    $trail->push($role->name, route('roles.edit', $role));
 });
 
 //* File Manager

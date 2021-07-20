@@ -15,7 +15,7 @@ Roles
     <div class="card">
         <div class="card-header d-flex justify-content-between no-gutters">
             <div class="col-md-6">
-                <form action="" method="GET" class="">
+                <form action="{{ route('roles.index') }}" method="GET" class="">
                     <div class="input-group">
                         <input 
                             class="form-control"
@@ -33,7 +33,7 @@ Roles
                 </form>
             </div>
             <div class="col-md-6 d-flex justify-content-end">
-                <a href="" class="btn btn-primary">
+                <a href="{{ route('roles.create') }}" class="btn btn-primary">
                     Add
                     <i class="fa fa-plus-square"></i>
                 </a>
@@ -54,12 +54,12 @@ Roles
                             <i class="fas fa-eye"></i>
                         </a>
                         {{-- Edit --}}
-                        <a href="" class="btn btn-sm btn-success mr-2">
+                        <a href="{{ route('roles.edit', $role) }}" class="btn btn-sm btn-success mr-2">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                         {{-- Delete --}}
                         <form 
-                            action="" 
+                            action="{{ route('roles.destroy', $role) }}" 
                             method="POST" 
                             role="alert"
                         >
@@ -74,6 +74,11 @@ Roles
                 @endforeach
             </div>
         </div>
+        @if ($roles->hasPages())
+        <div class="card-footer">
+            {{ $roles->links('vendor.pagination.bootstrap-4') }}
+        </div>
+        @endif
     </div>
 
 </div>

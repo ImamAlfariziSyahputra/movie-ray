@@ -4,18 +4,26 @@ namespace App\Http\Controllers;
 
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RoleController extends Controller
 {
+    private $perPage = 5;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $roles = $request->get('keyword')
+            ? Role::where('name', 'LIKE', "%$request->keyword%")->paginate($this->perPage)
+            : Role::paginate($this->perPage);
+
         return view('admin.role.index', [
-            'roles' => Role::all(),
+            'roles' => $roles->withQueryString(),
         ]);
     }
 
@@ -26,7 +34,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.role.create', [
+            'authorities' => config('permission.authorities'),
+        ]);
     }
 
     /**
@@ -37,7 +47,42 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|string|min:3|unique:roles,name',
+                'permissions' => 'required',
+            ],
+            [],
+            [],
+        );
+
+        if($validator->fails()) {
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            // insert to table Roles
+            $role = Role::create([
+                'name' => $request->name,
+            ]);
+            
+            // pivot role_has_permission
+            $role->givePermissionTo($request->permissions);
+
+            Alert::success('Add Role', 'Success');
+
+            return redirect()->route('roles.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            Alert::error('Add Role', 'Error : '.$th->getMessage());
+            return redirect()->back()->withInput($request->all());
+        } finally {
+            DB::commit();
+        }
     }
 
     /**
@@ -63,7 +108,11 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('admin.role.edit', [
+            'role' => $role,
+            'authorities' => config('permission.authorities'),
+            'checkedRole' => $role->permissions->pluck('name')->toArray(),
+        ]);
     }
 
     /**
@@ -75,7 +124,41 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'name' => 'required|string|min:3|unique:roles,name,'.$role->id,
+                'permissions' => 'required',
+            ],
+            [],
+            [],
+        );
+
+        if($validator->fails()) {
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            // insert to table Roles
+            $role->name = $request->name;
+            // pivot role_has_permission
+            $role->syncPermissions($request->permissions);
+
+            $role->save();
+
+            Alert::success('Edit Role', 'Success');
+
+            return redirect()->route('roles.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            Alert::error('Edit Role', 'Error : '.$th->getMessage());
+            return redirect()->back()->withInput($request->all());
+        } finally {
+            DB::commit();
+        }
     }
 
     /**
@@ -86,6 +169,23 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            // pivot role_has_permission
+            $role->revokePermissionTo($role->permissions->pluck('name')->toArray());
+
+            $role->delete();
+
+            Alert::success('Delete Role', 'Success');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+
+            Alert::error('Delete Role', 'Error : '.$th->getMessage());
+        } finally {
+            DB::commit();
+
+            return redirect()->back();
+        }
     }
 }

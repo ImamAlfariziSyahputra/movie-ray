@@ -269,6 +269,8 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
+        DB::beginTransaction();
+
         try {
             // Todo: pivot cast_movie
             $movie->cast()->detach();
