@@ -152,6 +152,12 @@ Breadcrumbs::for('addUser', function (BreadcrumbTrail $trail) {
     $trail->parent('user');
     $trail->push('Add', route('users.create'));
 });
+// Dashboard > Users > Edit > [name]
+Breadcrumbs::for('editUser', function (BreadcrumbTrail $trail, $user) {
+    $trail->parent('user');
+    $trail->push('Edit', route('users.edit', $user));
+    $trail->push($user->name, route('users.edit', $user));
+});
 
 //* File Manager
 // Dashboard > File Manager

@@ -14,7 +14,7 @@ Users
     <div class="card">
         <div class="card-header d-flex justify-content-between">
             <div class="col-md-5 p-0">
-                <form action="" method="GET" class="">
+                <form action="{{ route('users.index') }}" method="GET" class="">
                     <div class="input-group">
                         <input 
                             class="form-control"
@@ -69,12 +69,12 @@ Users
                         </div>
                         <div class="d-flex justify-content-end pb-3 px-3">
                             {{-- Edit --}}
-                            <a href="" class="btn btn-sm btn-success mr-2">
+                            <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-success mr-2">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
                             {{-- Delete --}}
                             <form 
-                                action="" 
+                                action="{{ route('users.destroy', $user) }}" 
                                 method="POST" 
                                 role="alert"
                             >
@@ -90,7 +90,36 @@ Users
                 @endforeach
             </div>
         </div>
+        @if ($users->hasPages())
+        <div class="card-footer">
+            {{ $users->links('vendor.pagination.bootstrap-4') }}
+        </div>
+        @endif
     </div>
 </div>
+
+@push('custJs')
+<script>
+$(() => {
+    $('form[role="alert"]').submit((e) => {
+        e.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            reverseButtons: true,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                e.target.submit();
+            }
+        });
+    });
+});
+</script>
+@endpush
 
 @endsection

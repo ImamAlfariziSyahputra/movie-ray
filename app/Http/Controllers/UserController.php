@@ -12,17 +12,20 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
+    private $perPage = 6;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $users = $request->get('keyword')
+            ? User::search($request->keyword)->paginate($this->perPage)
+            : User::paginate($this->perPage);
 
         return view('admin.users.index', [
-            'users' => $users,
+            'users' => $users->withQueryString(),
         ]);
     }
 
@@ -108,7 +111,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', [
+            'user' => $user,
+            'selectedRole' => $user->roles->first(),
+        ]);
     }
 
     /**
@@ -120,7 +126,40 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'role' => 'required',
+            ],
+            [],
+            [],
+        );
+
+        if($validator->fails()) {
+            if($request->has('role')) {
+                $request['role'] = Role::select('id', 'name')->find($request->role);
+            }
+
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        }
+
+        DB::beginTransaction();
+
+        try {
+            // Update Role for this User
+            $user->syncRoles($request->role);
+
+            Alert::success('Edit User', 'Success');
+
+            return redirect()->route('users.index');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Alert::error('Edit User', 'Error : '.$th->getMessage());
+
+            return redirect()->back()->withInput($request->all());
+        } finally {
+            DB::commit();
+        }
     }
 
     /**
@@ -131,6 +170,20 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            // Remove Role for this User
+            $user->removeRole($user->roles->first());
+            $user->delete();
+
+            Alert::success('Delete User', 'Success');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            Alert::error('Delete User', 'Error : '.$th->getMessage());
+        } finally {
+            DB::commit();
+            return redirect()->back();
+        }
     }
 }

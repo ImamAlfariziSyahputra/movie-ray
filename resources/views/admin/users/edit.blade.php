@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Add User
+Edit User
 @endsection
 
 @section('bc')
-{{ Breadcrumbs::render('addUser') }}
+{{ Breadcrumbs::render('editUser', $user) }}
 @endsection
 
 @section('content')
@@ -16,8 +16,9 @@ Add User
         <div class="card-body">
             {{-- Content --}}
             <div class="">
-                <form action="{{ route('users.store') }}" method="POST">
+                <form action="{{ route('users.update', $user) }}" method="POST">
                     @csrf
+                    @method('PUT')
                     {{-- Name --}}
                     <div class="form-group">
                         <label for="name" class="font-weight-bold">
@@ -28,31 +29,11 @@ Add User
                             class="form-control @error('name') is-invalid @enderror"
                             name="name"
                             id="name"
-                            value="{{ old('name') }}"
+                            value="{{ old('name', $user->name) }}"
                             placeholder="Enter name..."
+                            readonly
                         >
                         @error('name')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-                    {{-- Role --}}
-                    <div class="form-group">
-                        <label for="role" class="font-weight-bold">Role</label>
-                        <select 
-                            class="form-control @error('role') is-invalid @enderror" 
-                            id="role" 
-                            name="role"
-                            data-placeholder="Choose"
-                        >
-                            @if (old('role'))
-                            <option value='{{ old('role')->id }}' selected>
-                                {{ old('role')->name }}
-                            </option>
-                            @endif
-                        </select>
-                        @error('role')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -68,8 +49,9 @@ Add User
                             class="form-control @error('email') is-invalid @enderror"
                             name="email"
                             id="email"
-                            value="{{ old('email') }}"
+                            value="{{ old('email', $user->email) }}"
                             placeholder="Enter email..."
+                            readonly
                         >
                         @error('email')
                         <div class="invalid-feedback">
@@ -77,38 +59,26 @@ Add User
                         </div>
                         @enderror
                     </div>
-                    {{-- Password --}}
+                    {{-- Role --}}
                     <div class="form-group">
-                        <label for="password" class="font-weight-bold">
-                            Password
-                        </label>
-                        <input 
-                            type="password"
-                            class="form-control @error('password') is-invalid @enderror"
-                            name="password"
-                            id="password"
-                            value=""
-                            placeholder="Enter password..."
+                        <label for="role">Role</label>
+                        <select 
+                            class="form-control @error('role') is-invalid @enderror" 
+                            id="role" 
+                            name="role"
+                            data-placeholder="Choose"
                         >
-                        @error('password')
+                            @if (old('role', $selectedRole))
+                            <option value='{{ old('role', $selectedRole)->id }}' selected>
+                                {{ old('role', $selectedRole)->name }}
+                            </option>
+                            @endif
+                        </select>
+                        @error('role')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                         @enderror
-                    </div>
-                    {{-- Password Confirmation --}}
-                    <div class="form-group">
-                        <label for="password_confirmation" class="font-weight-bold">
-                            Password Confirmation
-                        </label>
-                        <input 
-                            type="password"
-                            class="form-control"
-                            name="password_confirmation"
-                            id="password_confirmation"
-                            value=""
-                            placeholder="Enter password confirmation..."
-                        >
                     </div>
                     <div class="float-right">
                         <a href="{{ route('users.index') }}" class="btn btn-warning text-white">

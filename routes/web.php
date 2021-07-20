@@ -46,7 +46,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
     Route::get('/roles/getRoles', [RoleController::class, 'getRoles'])->name('roles.select');
     Route::resource('/roles', RoleController::class);
     // Users
-    Route::resource('/users', UserController::class);
+    Route::resource('/users', UserController::class)->except(['show']);
 
     // lfm
     Route::group(['prefix' => 'filemanager'], function () {
