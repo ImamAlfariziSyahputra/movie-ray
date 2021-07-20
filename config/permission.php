@@ -1,6 +1,57 @@
 <?php
 
 return [
+    'authorities' => [
+        'manage_movies' => [
+            'movies.index',
+            'movies.create',
+            'movies.edit',
+            'movies.show',
+            'movies.delete',
+        ],
+        'manage_directors' => [
+            'directors.index',
+            'directors.create',
+            'directors.edit',
+            'directors.show',
+            'directors.delete',
+        ],
+        'manage_casts' => [
+            'casts.index',
+            'casts.create',
+            'casts.edit',
+            'casts.show',
+            'casts.delete',
+        ],
+        'manage_genres' => [
+            'genres.index',
+            'genres.create',
+            'genres.edit',
+            'genres.show',
+            'genres.delete',
+        ],
+        'manage_ratings' => [
+            'ratings.index',
+            'ratings.create',
+            'ratings.edit',
+            'ratings.show',
+            'ratings.delete',
+        ],
+        'manage_roles' => [
+            'roles.index',
+            'roles.create',
+            'roles.edit',
+            'roles.show',
+            'roles.delete',
+        ],
+        'manage_users' => [
+            'users.index',
+            'users.create',
+            'users.edit',
+            'users.show',
+            'users.delete',
+        ],
+    ],
 
     'models' => [
 
