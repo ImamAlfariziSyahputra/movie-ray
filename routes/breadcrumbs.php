@@ -141,6 +141,18 @@ Breadcrumbs::for('editRole', function (BreadcrumbTrail $trail, $role) {
     $trail->push($role->name, route('roles.edit', $role));
 });
 
+//* Users
+// Dashboard > Users
+Breadcrumbs::for('user', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Users', route('users.index'));
+});
+// Dashboard > Users > Add
+Breadcrumbs::for('addUser', function (BreadcrumbTrail $trail) {
+    $trail->parent('user');
+    $trail->push('Add', route('users.create'));
+});
+
 //* File Manager
 // Dashboard > File Manager
 Breadcrumbs::for('fileManager', function (BreadcrumbTrail $trail) {

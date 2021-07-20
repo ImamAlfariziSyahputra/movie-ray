@@ -27,6 +27,15 @@ class RoleController extends Controller
         ]);
     }
 
+    public function getRoles(Request $request)
+    {
+        $roles = $request->has('q')
+            ? Role::where('name', 'LIKE', "%$request->q%")
+            : Role::limit(5)->get();
+
+        return response()->json($roles);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

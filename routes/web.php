@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +43,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
     // Movies
     Route::resource('/movies', MovieController::class);
     // Roles
+    Route::get('/roles/getRoles', [RoleController::class, 'getRoles'])->name('roles.select');
     Route::resource('/roles', RoleController::class);
+    // Users
+    Route::resource('/users', UserController::class);
 
     // lfm
     Route::group(['prefix' => 'filemanager'], function () {

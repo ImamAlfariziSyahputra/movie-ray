@@ -3,6 +3,7 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
+                {{-- Dashboard --}}
                 <a 
                     class="nav-link {{ setActive([
                         'dashboard'
@@ -14,6 +15,7 @@
                     </div>
                     Dashboard
                 </a>
+                {{-- Ratings --}}
                 <a 
                     class="nav-link {{ setActive([
                         'ratings.index', 'ratings.create', 'ratings.edit'
@@ -25,6 +27,7 @@
                     </div>
                     Ratings
                 </a>
+                {{-- Genres --}}
                 <a 
                     class="nav-link {{ setActive([
                         'genres.index', 'genres.create', 'genres.edit'
@@ -36,6 +39,7 @@
                     </div>
                     Genres
                 </a>
+                {{-- Directors --}}
                 <a 
                     class="nav-link {{ setActive([
                         'directors.index', 'directors.create', 'directors.edit',
@@ -47,6 +51,7 @@
                     </div>
                     Directors
                 </a>
+                {{-- Casts --}}
                 <a 
                     class="nav-link {{ setActive([
                         'casts.index', 'casts.create', 'casts.edit', 'casts.show'
@@ -58,6 +63,7 @@
                     </div>
                     Cast
                 </a>
+                {{-- Movies --}}
                 <a 
                     class="nav-link {{ setActive([
                         'movies.index', 'movies.create', 'movies.edit', 'movies.show'
@@ -70,6 +76,19 @@
                     Movies
                 </a>
                 <div class="sb-sidenav-menu-heading">User Permission</div>
+                {{-- User --}}
+                <a 
+                    class="nav-link {{ setActive([
+                        'users.index', 'users.create', 'users.edit'
+                    ]) }}" 
+                    href="{{ route('users.index') }}"
+                >
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-fw fa-user-tie"></i>
+                    </div>
+                    User
+                </a>
+                {{-- Role --}}
                 <a 
                     class="nav-link {{ setActive([
                         'roles.index', 'roles.create', 'roles.edit'
@@ -80,15 +99,6 @@
                         <i class="fas fa-fw fa-user-tie"></i>
                     </div>
                     Role
-                </a>
-                <a 
-                    class="nav-link" 
-                    href="#"
-                >
-                    <div class="sb-nav-link-icon">
-                        <i class="fas fa-fw fa-user-tie"></i>
-                    </div>
-                    User
                 </a>
                 <div class="sb-sidenav-menu-heading">Setiing</div>
                 <a 
