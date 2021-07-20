@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CastController;
 use App\Http\Controllers\DirectorController;
+use App\Http\Controllers\FileManagerController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
@@ -42,6 +43,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
 
     // lfm
     Route::group(['prefix' => 'filemanager'], function () {
+        Route::get('/index', [FileManagerController::class, 'index'])->name('fileManager.index');
         \UniSharp\LaravelFilemanager\Lfm::routes();
     });
 });

@@ -10,7 +10,7 @@
                     href="{{ route('dashboard') }}"
                 >
                     <div class="sb-nav-link-icon">
-                        <i class="fas fa-tachometer-alt"></i>
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
                     </div>
                     Dashboard
                 </a>
@@ -21,7 +21,7 @@
                     href="{{ route('ratings.index') }}"
                 >
                     <div class="sb-nav-link-icon">
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-fw fa-star"></i>
                     </div>
                     Ratings
                 </a>
@@ -32,7 +32,7 @@
                     href="{{ route('genres.index') }}"
                 >
                     <div class="sb-nav-link-icon">
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-fw fa-chess-king"></i>
                     </div>
                     Genres
                 </a>
@@ -43,7 +43,7 @@
                     href="{{ route('directors.index') }}"
                 >
                     <div class="sb-nav-link-icon">
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-fw fa-chess-rook"></i>
                     </div>
                     Directors
                 </a>
@@ -54,7 +54,7 @@
                     href="{{ route('casts.index') }}"
                 >
                     <div class="sb-nav-link-icon">
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-fw fa-chess-pawn"></i>
                     </div>
                     Cast
                 </a>
@@ -65,20 +65,32 @@
                     href="{{ route('movies.index') }}"
                 >
                     <div class="sb-nav-link-icon">
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-fw fa-video"></i>
                     </div>
                     Movies
                 </a>
+                <div class="sb-sidenav-menu-heading">User Permission</div>
                 <a 
                     class="nav-link" 
                     href="#"
                 >
                     <div class="sb-nav-link-icon">
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-fw fa-user-tie"></i>
                     </div>
                     User
                 </a>
-                
+                <div class="sb-sidenav-menu-heading">Setiing</div>
+                <a 
+                    class="nav-link {{ setActive([
+                        'fileManager.index'
+                    ]) }}" 
+                    href="{{ route('fileManager.index') }}"
+                >
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-fw fa-folder-open"></i>
+                    </div>
+                    File Manager
+                </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">

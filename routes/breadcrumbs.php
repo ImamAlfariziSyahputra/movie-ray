@@ -116,3 +116,10 @@ Breadcrumbs::for('detailMovie', function (BreadcrumbTrail $trail, $movie) {
     $trail->push('Detail', route('movies.show', $movie));
     $trail->push($movie->title, route('movies.show', $movie));
 });
+
+//* File Manager
+// Dashboard > File Manager
+Breadcrumbs::for('fileManager', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('File Manager', route('fileManager.index'));
+});
