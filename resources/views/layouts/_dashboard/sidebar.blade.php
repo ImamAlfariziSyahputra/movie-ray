@@ -71,6 +71,17 @@
                 </a>
                 <div class="sb-sidenav-menu-heading">User Permission</div>
                 <a 
+                    class="nav-link {{ setActive([
+                        'roles.index', 'roles.create', 'roles.edit'
+                    ]) }}" 
+                    href="{{ route('roles.index') }}"
+                >
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-fw fa-user-tie"></i>
+                    </div>
+                    Role
+                </a>
+                <a 
                     class="nav-link" 
                     href="#"
                 >

@@ -117,6 +117,19 @@ Breadcrumbs::for('detailMovie', function (BreadcrumbTrail $trail, $movie) {
     $trail->push($movie->title, route('movies.show', $movie));
 });
 
+//* Roles
+// Dashboard > Roles
+Breadcrumbs::for('role', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Roles', route('roles.index'));
+});
+// Dashboard > Roles > Detail > [name]
+Breadcrumbs::for('detailRole', function (BreadcrumbTrail $trail, $role) {
+    $trail->parent('role');
+    $trail->push('Detail', route('roles.show', $role));
+    $trail->push($role->name, route('roles.show', $role));
+});
+
 //* File Manager
 // Dashboard > File Manager
 Breadcrumbs::for('fileManager', function (BreadcrumbTrail $trail) {
