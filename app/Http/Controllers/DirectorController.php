@@ -10,6 +10,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 class DirectorController extends Controller
 {
     private $perPage = 5;
+
+    public function __construct()
+    {
+        $this->middleware('permission:directors.index', ['only' => 'index']);
+        $this->middleware('permission:directors.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:directors.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:directors.show', ['only' => 'show']);
+        $this->middleware('permission:directors.delete', ['only' => 'destroy']);
+    }
     /**
      * Display a listing of the resource.
      *

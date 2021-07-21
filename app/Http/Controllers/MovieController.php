@@ -14,6 +14,22 @@ use RealRashid\SweetAlert\Facades\Alert;
 class MovieController extends Controller
 {
     protected $perPage = 5;
+    // 'manage_movies' => [
+    //     'movies.index',
+    //     'movies.create',
+    //     'movies.edit',
+    //     'movies.show',
+    //     'movies.delete',
+    // ],
+
+    public function __construct()
+    {
+        $this->middleware('permission:movies.index', ['only' => 'index']);
+        $this->middleware('permission:movies.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:movies.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:movies.show', ['only' => 'show']);
+        $this->middleware('permission:movies.delete', ['only' => 'destroy']);
+    }
     /**
      * Display a listing of the resource.
      *

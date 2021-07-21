@@ -25,12 +25,14 @@ Directors
                     </div>
                 </form>
             </div>
+            @can('directors.create')
             <div class="col-md-6 d-flex justify-content-end">
                 <a href="{{ route('directors.create') }}" class="btn btn-primary">
                     Add
                     <i class="fa fa-plus-square"></i>
                 </a>
             </div>
+            @endcan
         </div>
         <div class="card-body">
             {{-- Content --}}
@@ -43,6 +45,7 @@ Directors
                     </div>
                     <div class="action d-flex">
                         {{-- Detail --}}
+                        @can('directors.show')
                         <button 
                             class="btn btn-sm btn-info mr-2"
                             data-toggle="modal"
@@ -51,11 +54,15 @@ Directors
                         >
                             <i class="fas fa-eye"></i>
                         </button>
+                        @endcan
                         {{-- Edit --}}
+                        @can('directors.edit')
                         <a href="{{ route('directors.edit', $director) }}" class="btn btn-sm btn-success mr-2">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
+                        @endcan
                         {{-- Delete --}}
+                        @can('directors.delete')
                         <form action="{{ route('directors.destroy', $director) }}" method="POST" role="alert">
                             @csrf
                             @method('DELETE')
@@ -63,6 +70,7 @@ Directors
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
+                        @endcan
                     </div>
                 </div>
                 @endforeach

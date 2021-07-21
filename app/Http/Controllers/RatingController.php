@@ -10,6 +10,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 class RatingController extends Controller
 {
     private $perPage = 5;
+
+    public function __construct()
+    {
+        $this->middleware('permission:ratings.index', ['only' => 'index']);
+        $this->middleware('permission:ratings.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:ratings.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:ratings.show', ['only' => 'show']);
+        $this->middleware('permission:ratings.delete', ['only' => 'destroy']);
+    }
     /**
      * Display a listing of the resource.
      *

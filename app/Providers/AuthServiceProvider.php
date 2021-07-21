@@ -25,6 +25,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Gate::define('manage_movies', function($user) {
+        //     return $user->hasAnyPermission([
+        //         'movies.index',
+        //         'movies.create',
+        //         'movies.edit',
+        //         'movies.show',
+        //         'movies.delete',
+        //     ]);
+        // });
     }
 }

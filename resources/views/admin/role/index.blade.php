@@ -32,12 +32,14 @@ Roles
                     </div>
                 </form>
             </div>
+            @can('roles.create')
             <div class="col-md-6 d-flex justify-content-end">
                 <a href="{{ route('roles.create') }}" class="btn btn-primary">
                     Add
                     <i class="fa fa-plus-square"></i>
                 </a>
             </div>
+            @endcan
         </div>
         <div class="card-body">
             {{-- Content --}}
@@ -50,14 +52,19 @@ Roles
                     </div>
                     <div class="action d-flex">
                         {{-- Detail --}}
+                        @can('roles.show')
                         <a href="{{ route('roles.show', $role) }}" class="btn btn-sm btn-info mr-2">
                             <i class="fas fa-eye"></i>
                         </a>
+                        @endcan
                         {{-- Edit --}}
+                        @can('roles.edit')
                         <a href="{{ route('roles.edit', $role) }}" class="btn btn-sm btn-success mr-2">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
+                        @endcan
                         {{-- Delete --}}
+                        @can('roles.delete')
                         <form 
                             action="{{ route('roles.destroy', $role) }}" 
                             method="POST" 
@@ -69,6 +76,7 @@ Roles
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
+                        @endcan
                     </div>
                 </div>
                 @endforeach

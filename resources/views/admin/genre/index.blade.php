@@ -31,12 +31,14 @@ Genres
                     </div>
                 </form>
             </div>
+            @can('genres.create')
             <div class="col-md-6 d-flex justify-content-end">
                 <a href="{{ route('genres.create') }}" class="btn btn-primary">
                     Add
                     <i class="fa fa-plus-square"></i>
                 </a>
             </div>
+            @endcan
         </div>
         <div class="card-body">
             {{-- Content --}}
@@ -49,10 +51,13 @@ Genres
                     </div>
                     <div class="action d-flex">
                         {{-- Edit --}}
+                        @can('genres.edit')
                         <a href="{{ route('genres.edit', $genre) }}" class="btn btn-sm btn-success mr-2">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
+                        @endcan
                         {{-- Delete --}}
+                        @can('genres.delete')
                         <form 
                             action="{{ route('genres.destroy', $genre) }}" 
                             method="POST" 
@@ -64,6 +69,7 @@ Genres
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
+                        @endcan
                     </div>
                 </div>
                 @endforeach

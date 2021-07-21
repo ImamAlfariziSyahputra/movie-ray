@@ -10,6 +10,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 class GenreController extends Controller
 {
     private $perPage = 5;
+
+    public function __construct()
+    {
+        $this->middleware('permission:genres.index', ['only' => 'index']);
+        $this->middleware('permission:genres.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:genres.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:genres.show', ['only' => 'show']);
+        $this->middleware('permission:genres.delete', ['only' => 'destroy']);
+    }
     /**
      * Display a listing of the resource.
      *

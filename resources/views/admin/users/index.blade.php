@@ -31,12 +31,14 @@ Users
                     </div>
                 </form>
             </div>
+            @can('users.create')
             <div class="col-md-7 p-0 d-flex justify-content-end">
                 <a href="{{ route('users.create') }}" class="btn btn-primary">
                     Add
                     <i class="fa fa-fw fa-plus-square"></i>
                 </a>
             </div>
+            @endcan
         </div>
         <div class="card-body">
             <div class="row">
@@ -62,17 +64,20 @@ Users
                                     <tr>
                                         <th>Role</th>
                                         <td>:</td>
-                                        <td>Admin</td>
+                                        <td>{{ $user->roles->first()->name }}</td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end pb-3 px-3">
                             {{-- Edit --}}
+                            @can('users.edit')
                             <a href="{{ route('users.edit', $user) }}" class="btn btn-sm btn-success mr-2">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>
+                            @endcan
                             {{-- Delete --}}
+                            @can('users.delete')
                             <form 
                                 action="{{ route('users.destroy', $user) }}" 
                                 method="POST" 
@@ -84,6 +89,7 @@ Users
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
+                            @endcan
                         </div>
                     </div>
                 </div>

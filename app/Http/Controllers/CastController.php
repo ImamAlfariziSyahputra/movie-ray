@@ -10,6 +10,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 class CastController extends Controller
 {
     protected $perPage = 5;
+
+    public function __construct()
+    {
+        $this->middleware('permission:casts.index', ['only' => 'index']);
+        $this->middleware('permission:casts.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:casts.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:casts.show', ['only' => 'show']);
+        $this->middleware('permission:casts.delete', ['only' => 'destroy']);
+    }
     /**
      * Display a listing of the resource.
      *

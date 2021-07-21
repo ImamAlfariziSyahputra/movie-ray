@@ -32,12 +32,14 @@ Casts
                     </div>
                 </form>
             </div>
+            @can('casts.create')
             <div class="col-md-6 d-flex justify-content-end">
                 <a href="{{ route('casts.create') }}" class="btn btn-primary">
                     Add
                     <i class="fa fa-plus-square"></i>
                 </a>
             </div>
+            @endcan
         </div>
         <div class="card-body">
             {{-- Content --}}
@@ -50,14 +52,19 @@ Casts
                     </div>
                     <div class="action d-flex">
                         {{-- Detail --}}
+                        @can('casts.show')
                         <a href="{{ route('casts.show', $cast) }}" class="btn btn-sm btn-info mr-2">
                             <i class="fas fa-eye"></i>
                         </a>
+                        @endcan
                         {{-- Edit --}}
+                        @can('casts.edit')
                         <a href="{{ route('casts.edit', $cast) }}" class="btn btn-sm btn-success mr-2">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
+                        @endcan
                         {{-- Delete --}}
+                        @can('casts.delete')
                         <form 
                             action="{{ route('casts.destroy', $cast) }}" 
                             method="POST" 
@@ -69,6 +76,7 @@ Casts
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
+                        @endcan
                     </div>
                 </div>
                 @endforeach

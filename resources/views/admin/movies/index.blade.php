@@ -32,12 +32,14 @@ Movies
                     </div>
                 </form>
             </div>
+            @can('movies.create')
             <div class="col-md-6 d-flex justify-content-end">
                 <a href="{{ route('movies.create') }}" class="btn btn-primary">
                     Add
                     <i class="fa fa-plus-square"></i>
                 </a>
             </div>
+            @endcan
         </div>
         <div class="card-body">
             {{-- Content --}}
@@ -52,6 +54,7 @@ Movies
                     <div class="col-md-4 d-flex flex-row-reverse">
                         <div class="action d-flex">
                             {{-- Detail --}}
+                            @can('movies.show')
                             <div>
                                 <a 
                                     href="{{ route('movies.show', $movie) }}" 
@@ -60,7 +63,9 @@ Movies
                                     <i class="fas fa-eye"></i>
                                 </a>
                             </div>
+                            @endcan
                             {{-- Edit --}}
+                            @can('movies.edit')
                             <div>
                                 <a 
                                     href="{{ route('movies.edit', $movie) }}" 
@@ -69,7 +74,9 @@ Movies
                                     <i class="fas fa-pencil-alt"></i>
                                 </a>
                             </div>
+                            @endcan
                             {{-- Delete --}}
+                            @can('movies.delete')
                             <form 
                                 action="{{ route('movies.destroy', $movie) }}" 
                                 method="POST" 
@@ -81,6 +88,7 @@ Movies
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </form>
+                            @endcan
                         </div>
                     </div>
                     

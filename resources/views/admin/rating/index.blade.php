@@ -31,12 +31,14 @@ Rating
                     </div>
                 </form>
             </div>
+            @can('ratings.create')
             <div class="col-md-6 d-flex justify-content-end">
                 <a href="{{ route('ratings.create') }}" class="btn btn-primary">
                     Add
                     <i class="fa fa-plus-square"></i>
                 </a>
             </div>
+            @endcan
         </div>
         <div class="card-body">
 
@@ -48,11 +50,14 @@ Rating
                         {{$rating->number}}
                     </div>
                     <div class="action d-flex">
+                        @can('ratings.edit')
                         {{-- Edit --}}
                         <a href="{{ route('ratings.edit', $rating) }}" class="btn btn-sm btn-success mr-2">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
+                        @endcan
                         {{-- Delete --}}
+                        @can('ratings.delete')
                         <form 
                             action="{{ route('ratings.destroy', $rating) }}" 
                             method="POST" 
@@ -64,6 +69,7 @@ Rating
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
+                        @endcan
                     </div>
                 </div>
                 @endforeach

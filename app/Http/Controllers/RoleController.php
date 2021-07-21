@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,6 +12,15 @@ use RealRashid\SweetAlert\Facades\Alert;
 class RoleController extends Controller
 {
     private $perPage = 5;
+
+    public function __construct()
+    {
+        $this->middleware('permission:roles.index', ['only' => 'index']);
+        $this->middleware('permission:roles.create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:roles.edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:roles.show', ['only' => 'show']);
+        $this->middleware('permission:roles.delete', ['only' => 'destroy']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -178,6 +188,12 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
+        //! if role still in used, u can't remove it
+        if(User::role($role->name)->count()) {
+            Alert::warning('Delete Role Failed', 'Warning! role "'.$role->name.'" is still in used');
+            return redirect()->back();
+        }
+
         DB::beginTransaction();
 
         try {

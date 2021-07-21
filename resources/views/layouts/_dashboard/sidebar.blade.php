@@ -16,6 +16,7 @@
                     Dashboard
                 </a>
                 {{-- Ratings --}}
+                @can('ratings.index')
                 <a 
                     class="nav-link {{ setActive([
                         'ratings.index', 'ratings.create', 'ratings.edit'
@@ -27,7 +28,9 @@
                     </div>
                     Ratings
                 </a>
+                @endcan
                 {{-- Genres --}}
+                @can('genres.index')
                 <a 
                     class="nav-link {{ setActive([
                         'genres.index', 'genres.create', 'genres.edit'
@@ -39,7 +42,9 @@
                     </div>
                     Genres
                 </a>
+                @endcan
                 {{-- Directors --}}
+                @can('directors.index')
                 <a 
                     class="nav-link {{ setActive([
                         'directors.index', 'directors.create', 'directors.edit',
@@ -51,7 +56,9 @@
                     </div>
                     Directors
                 </a>
+                @endcan
                 {{-- Casts --}}
+                @can('casts.index')
                 <a 
                     class="nav-link {{ setActive([
                         'casts.index', 'casts.create', 'casts.edit', 'casts.show'
@@ -63,7 +70,9 @@
                     </div>
                     Cast
                 </a>
+                @endcan
                 {{-- Movies --}}
+                @can('movies.index')
                 <a 
                     class="nav-link {{ setActive([
                         'movies.index', 'movies.create', 'movies.edit', 'movies.show'
@@ -75,8 +84,10 @@
                     </div>
                     Movies
                 </a>
+                @endcan
                 <div class="sb-sidenav-menu-heading">User Permission</div>
                 {{-- User --}}
+                @can('users.index')
                 <a 
                     class="nav-link {{ setActive([
                         'users.index', 'users.create', 'users.edit'
@@ -88,7 +99,9 @@
                     </div>
                     User
                 </a>
+                @endcan
                 {{-- Role --}}
+                @can('roles.index')
                 <a 
                     class="nav-link {{ setActive([
                         'roles.index', 'roles.create', 'roles.edit'
@@ -100,7 +113,8 @@
                     </div>
                     Role
                 </a>
-                <div class="sb-sidenav-menu-heading">Setiing</div>
+                @endcan
+                <div class="sb-sidenav-menu-heading">Setting</div>
                 <a 
                     class="nav-link {{ setActive([
                         'fileManager.index'
