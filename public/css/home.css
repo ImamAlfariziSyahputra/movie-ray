@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Vollkorn|B612|Poppins');
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #1A1C2D;
+    font-family: 'Poppins';
+    color: white;
+}
+
+/* Common */
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* navbar */
+nav {
+    background-color: #1A1C2D;
+}
+nav .navbar-brand {
+    font-size: 2rem;
+    font-weight: bolder;
+}
+/* nav search */
+nav .search {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 0.2rem 0;
+}
+nav .search__input {
+    border: none;
+    font-weight: bold;
+}
+nav .search__input:focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+nav .search button {
+    background-color: transparent;
+    border: none;
+}
+nav .search i {
+    cursor: pointer;
+    color: #1A1C2D !important;
+    font-size: 1.5rem;
+}
+
+@media (max-width: 992px) {
+    nav form {
+        margin-left: 0 !important;
+        margin-right: 0;
+    }
+    nav .search, nav .search__input {
+        width: 100% !important;
+    }
+}
+
+/* Movie Card */
+.content .col-md-3 {
+    min-height: auto;
+    max-height: auto;
+    overflow: hidden;
+}
+.content .heading-latest {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+    margin-left: 0.5rem;
+}
+.content .heading-latest hr {
+    width: 3rem;
+    height: 0.2rem;
+}
+/* .poster__container {
+    position: relative;
+    height: 300px;
+    width: 400px;
+} */
+.poster__image {
+    padding: 0.5rem;
+    border-radius: 0.8rem;
+    cursor: pointer;
+    transition: 0.4s;
+    /* position: absolute;
+    left: 0;
+    top: 0; */
+}
+/* .poster__title {
+    z-index: 100;
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    left: 150px;
+    top: 350px;
+} */
+.content img:hover {
+    filter: brightness(50%);
+}
+
+/* Pagination */
+/* .pagination .page-link {
+    
+}
+.pagination .active .page-link {
+
+} */
+
+
+/* Genres */
+.genres__heading, .year__heading, .popular__heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1.2rem;
+}
+.genres__heading hr {
+    width: 3rem;
+    height: 0.2rem;
+}
+.genres__items {
+    max-height: 23rem;
+    overflow: auto;
+}
+.genres__item i {
+    font-size: 1.3rem;
+}
+.genres__item > a {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #C6C6CA;
+}
+.genres__item > a:hover {
+    color: white;
+}
+.genres__item hr {
+    background-color: #636363;
+}
+
+/* Popular post */
+.popular .popular__img {
+    padding-right: 1rem;
+    min-width: 5rem;
+    max-width: 5rem;
+}
+.popular .popular__img img {
+    border-radius: 0.1rem;
+}
+
+/* !Detail */
+.jumbotron-img {
+    background-image: url('https://www.joblo.com/assets/images/joblo/posters/2021/06/sing-2-movie-poster-2_thumb.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    height: 20rem;
+    border-radius: 0.5rem;
+}
+.detail hr {
+    border-top: dotted;
+}
+
+/* tabs */
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active  {
+    background-color: #1E90FA !important;
+    color: white;
+    border: none;
+}
+.nav-tabs .nav-link {
+    text-align: center;
+    color: grey;
+    /* transition: all 300ms ease-in; */
+}
+.nav-tabs .nav-link:hover {
+    background-color: #202236;
+    color: white !important;
+    border: none;
+}
+.tab-content {
+    padding: 1rem;
+    background-color: #272935;
+    color: rgb(156, 156, 156);
+}
+
+/* old */
+/* .tab a:hover {
+    color: white !important;
+    background-color: rgba(136, 136, 136, 0.2);
+}
+.tab a:focus, .tab .active {
+    outline: none !important;
+    background-color: #1E90FA;
+    color: white !important;
+}
+.tab-content {
+    background-color: #272935;
+    color: #b1b0b0;
+}
+.tab-content {
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+} */
+
+/* Cast */
+.cast__img {
+    width: 3.5rem;
+    max-height: 5rem;
+    overflow: hidden;
+}
+

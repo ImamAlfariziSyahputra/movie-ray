@@ -20,7 +20,7 @@ class CreateMoviesTable extends Migration
             $table->string('slug')->unique();
             $table->string('poster');
             $table->string('banner');
-            $table->string('desc');
+            $table->string('desc')->nullable();
             $table->text('synopsis');
             $table->string('trailer');
             $table->string('year');

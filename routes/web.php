@@ -6,6 +6,7 @@ use App\Http\Controllers\FileManagerController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -23,7 +24,9 @@ use App\Http\Controllers\UserController;
 
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [PagesController::class, 'home'])->name('pages.home');
+Route::get('/search', [PagesController::class, 'searchMovies'])->name('pages.searchMovies');
+Route::get('/{movie}', [PagesController::class, 'detailMovie'])->name('pages.detailMovie');
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
     // Dashboard
