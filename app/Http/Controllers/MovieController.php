@@ -6,6 +6,7 @@ use App\Models\Cast;
 use App\Models\Director;
 use App\Models\Genre;
 use App\Models\Movie;
+use App\Models\Year;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -90,6 +91,10 @@ class MovieController extends Controller
             if($request->has('director')) {
                 $request['director'] = Director::select('id', 'name')->find($request->director);
             }
+            // old('year')
+            if($request->has('year')) {
+                $request['year'] = Year::select('id', 'name')->find($request->year);
+            }
             // old('casts')
             if($request->has('casts')) {
                 $request['casts'] = Cast::select('id', 'name')->whereIn('id', $request->casts)->get();
@@ -136,6 +141,10 @@ class MovieController extends Controller
             // old('director')
             if($request->has('director')) {
                 $request['director'] = Director::select('id', 'name')->find($request->director);
+            }
+            // old('year')
+            if($request->has('year')) {
+                $request['year'] = Year::select('id', 'name')->find($request->year);
             }
             // old('casts')
             if($request->has('casts')) {
@@ -214,6 +223,10 @@ class MovieController extends Controller
             if($request->has('director')) {
                 $request['director'] = Director::select('id', 'name')->find($request->director);
             }
+            // old('year')
+            if($request->has('year')) {
+                $request['year'] = Year::select('id', 'name')->find($request->year);
+            }
             // old('casts')
             if($request->has('casts')) {
                 $request['casts'] = Cast::select('id', 'name')->whereIn('id', $request->casts)->get();
@@ -239,7 +252,7 @@ class MovieController extends Controller
                 'desc' => $request->desc,
                 'synopsis' => $request->synopsis,
                 'trailer' => $request->trailer,
-                'year' => $request->year,
+                'year_id' => $request->year,
                 'duration' => $request->duration,
                 'imdb_rating' => $request->imdb_rating,
             ]);
@@ -260,6 +273,10 @@ class MovieController extends Controller
             // old('director')
             if($request->has('director')) {
                 $request['director'] = Director::select('id', 'name')->find($request->director);
+            }
+            // old('year')
+            if($request->has('year')) {
+                $request['year'] = Year::select('id', 'name')->find($request->year);
             }
             // old('casts')
             if($request->has('casts')) {

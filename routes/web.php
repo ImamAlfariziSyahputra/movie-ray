@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\YearController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 
@@ -26,7 +27,9 @@ Auth::routes();
 
 Route::get('/', [PagesController::class, 'home'])->name('pages.home');
 Route::get('/search', [PagesController::class, 'searchMovies'])->name('pages.searchMovies');
-Route::get('/{movie}', [PagesController::class, 'detailMovie'])->name('pages.detailMovie');
+Route::get('/detail/{movie}', [PagesController::class, 'detailMovie'])->name('pages.detailMovie');
+Route::get('/genre/{genreName}', [PagesController::class, 'genreMovies'])->name('pages.genreMovies');
+Route::get('/year/{yearName}', [PagesController::class, 'yearMovies'])->name('pages.yearMovies');
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
     // Dashboard
@@ -36,8 +39,12 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {
     // Genres
     Route::get('/genres/getGenres', [GenreController::class, 'getGenres'])->name('genres.select');
     Route::resource('/genres', GenreController::class)->except(['show']);
+    // Years
+    Route::get('/years/getYears', [YearController::class, 'getYears'])
+        ->name('years.select');
+    Route::resource('/years', YearController::class)->except(['show']);
     // Directors
-    Route::get('/directots/getDirectors', [DirectorController::class, 'getDirectors'])
+    Route::get('/directors/getDirectors', [DirectorController::class, 'getDirectors'])
         ->name('directors.select');
     Route::resource('/directors', DirectorController::class)->except(['show']);
     // Casts

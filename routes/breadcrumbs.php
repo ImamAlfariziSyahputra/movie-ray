@@ -33,6 +33,26 @@ Breadcrumbs::for('editRating', function (BreadcrumbTrail $trail, $rating) {
     $trail->push($rating->number, route('ratings.edit', $rating));
 });
 
+//* Year
+// Dashboard > Year
+Breadcrumbs::for('year', function (BreadcrumbTrail $trail) {
+    $trail->parent('dashboard');
+    $trail->push('Year', route('years.index'));
+});
+
+// Dashboard > Year > Add
+Breadcrumbs::for('addYear', function (BreadcrumbTrail $trail) {
+    $trail->parent('year');
+    $trail->push('Add', route('years.create'));
+});
+
+// Dashboard > Year > Edit > [name]
+Breadcrumbs::for('editYear', function (BreadcrumbTrail $trail, $year) {
+    $trail->parent('year');
+    $trail->push('Edit', route('years.edit', $year));
+    $trail->push($year->name, route('years.edit', $year));
+});
+
 //* Genre
 // Dashboard > Genre
 Breadcrumbs::for('genre', function (BreadcrumbTrail $trail) {

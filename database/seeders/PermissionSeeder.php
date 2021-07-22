@@ -84,5 +84,6 @@ class PermissionSeeder extends Seeder
 
         // TODO: Give Role to User
         $userSuperAdmin = User::find(1)->assignRole('SuperAdmin');
+        $userAdmin = User::find(2)->assignRole('Admin');
     }
 }

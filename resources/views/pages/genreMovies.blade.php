@@ -7,7 +7,7 @@
         <!-- movies -->
         <div class="movies mb-5">
             <div class="heading-latest">
-                <span class="">Search : {{ request()->get('keyword') }}</span>
+                <span class="">Genre : {{ $choosenGenre }}</span>
                 <hr class="bg-primary m-0 mb-2">
             </div>
             <div class="row no-gutters">
@@ -31,7 +31,8 @@
         compact('genres'),
         compact('years'),
     ])
-    
+
+
 </main>
 
 @endsection

@@ -23,7 +23,7 @@ Detail Movie
             <h2>{{ $movie->title }}</h2>
             <p>{{ $movie->desc }}</p>
             <div class="">
-                <span class="mr-2">{{ $movie->year }}</span>
+                <span class="mr-2">{{ $movie->year->name }}</span>
                 <span class="mr-2">US</span>
                 <span class="mr-2">{{ $movie->duration }} minutes</span>
             </div>

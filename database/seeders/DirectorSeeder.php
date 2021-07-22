@@ -17,13 +17,19 @@ class DirectorSeeder extends Seeder
         DB::table('directors')->insert([
             [
                 'name' => "Russo Brothers",
-                'image' => 'https://www.indiewire.com/wp-content/uploads/2021/03/RUSSO-HEADSHOT-APPROVED-2021.jpg?w=780',
+                'image' => '/storage/images/Russo Brothers-1626839677.jpg',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'name' => "Zack Snyder",
-                'image' => 'https://non-indonesia-distribution.brta.in/2017-05/466050d9f88f76ac3b0708231c3ae379.jpg',
+                'image' => '/storage/images/Zack Snyder-1626839662.jpg',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ],
+            [
+                'name' => "James Gunn",
+                'image' => '/storage/images/James Gunn-1626839654.jpg',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],

@@ -29,6 +29,20 @@
                     Ratings
                 </a>
                 @endcan
+                {{-- Years --}}
+                @can('years.index')
+                <a 
+                    class="nav-link {{ setActive([
+                        'years.index', 'years.create', 'years.edit', 'years.show'
+                    ]) }}" 
+                    href="{{ route('years.index') }}"
+                >
+                    <div class="sb-nav-link-icon">
+                        <i class="fas fa-fw fa-calendar-alt"></i>
+                    </div>
+                    Years
+                </a>
+                @endcan
                 {{-- Genres --}}
                 @can('genres.index')
                 <a 

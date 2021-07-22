@@ -75,78 +75,11 @@
             </div>
         </div>
     </div>
-    <div class="side col-md-3">
-        <div class="genres mb-4">
-            <div class="genres__heading">
-                <span class="">Genres</span>
-            </div>
-            <div class="genres__items d-flex flex-column">
-                @foreach ($genres as $genre)
-                <div class="genres__item">
-                    <a href="#" class="d-flex align-items-center">
-                        <i class="fa fa-caret-right mr-2"></i>
-                        <span>{{ $genre->name }}</span>
-                    </a>
-                    <hr class="mt-1 mb-2 d-block">
-                </div>
-                @endforeach
-            </div>
-        </div>
-        <div class="genres mb-4">
-            <div class="year__heading d-flex justify-content-between">
-                <span class="">Tahun Rilis</span>
-                <i class="fas fa-angle-down"></i>
-            </div>
-            <div class="genres__items d-flex flex-column">
-                <div class="genres__item">
-                    <div class="d-flex align-items-center">
-                        <i class="fa fa-caret-right mr-2"></i>
-                        <span>2021</span>
-                    </div>
-                    <hr class="mt-1 mb-2 d-block">
-                </div>
-                <div class="genres__item">
-                    <div class="d-flex align-items-center">
-                        <i class="fa fa-caret-right mr-2"></i>
-                        <span>2020</span>
-                    </div>
-                    <hr class="mt-1 mb-2 d-block">
-                </div>
-                <div class="genres__item">
-                    <div class="d-flex align-items-center">
-                        <i class="fa fa-caret-right mr-2"></i>
-                        <span>2019</span>
-                    </div>
-                    <hr class="mt-1 mb-2 d-block">
-                </div>
-            </div>
-        </div>
-        <div class="popular">
-            <div class="popular__heading d-flex justify-content-between mb-2">
-                <span class="">Popular Posts</span>
-                <i class="fas fa-angle-down"></i>
-            </div>
-            <div class="popular__items d-flex flex-wrap no-gutters">
-                <div class="popular__item col-md-12 d-flex mb-4 no-gutters">
-                    <div class="popular__img col-md-4">
-                        <img src="https://www.joblo.com/assets/images/joblo/posters/2021/05/black-widow-character-poster-2021-1_thumb.jpg" class="img-fluid">
-                    </div>
-                    <div class="col-md-8">
-                        <p class="m-0 text-white">Black Widow</p>
-                    </div>
-                </div>
-                <div class="popular__item col-md-12 d-flex mb-4 no-gutters">
-                    <div class="popular__img col-md-4">
-                        <img src="https://www.joblo.com/assets/images/joblo/posters/2021/05/black-widow-character-poster-2021-1_thumb.jpg" class="img-fluid">
-                    </div>
-                    <div class="col-md-8">
-                        <p class="m-0 text-white">The Falcon and the Winter Soldier</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    @include('pages._sideList', [
+        compact('genres'),
+        compact('years'),
+    ])
 
-    </div>
 </main>
 
 @push('custCss')

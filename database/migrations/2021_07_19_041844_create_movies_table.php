@@ -23,7 +23,7 @@ class CreateMoviesTable extends Migration
             $table->string('desc')->nullable();
             $table->text('synopsis');
             $table->string('trailer');
-            $table->string('year');
+            $table->unsignedBigInteger('year_id');
             $table->integer('duration');
             $table->string('imdb_rating');
             $table->timestamps();
@@ -31,6 +31,11 @@ class CreateMoviesTable extends Migration
             $table->foreign('director_id')
                 ->references('id')
                 ->on('directors')
+                ->onDelete('cascade');
+
+            $table->foreign('year_id')
+                ->references('id')
+                ->on('years')
                 ->onDelete('cascade');
         });
     }

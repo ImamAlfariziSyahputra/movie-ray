@@ -240,14 +240,18 @@ Edit Movie
                         <label for="year" class="font-weight-bold">
                             Year
                         </label>
-                        <input 
-                            type="number"
-                            class="form-control @error('year') is-invalid @enderror"
+                        <select 
+                            class="form-control border @error('year') is-invalid @enderror"
+                            data-placeholder='Choose'
                             name="year"
                             id="year"
-                            value="{{ old('year', $movie->year) }}"
-                            placeholder="Enter year..."
                         >
+                            @if (old('year', $movie->year))
+                                <option value="{{ old('year', $movie->year)->id }}" selected>
+                                    {{ old('year', $movie->year)->name }}
+                                </option>
+                            @endif
+                        </select>
                         @error('year')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -392,6 +396,28 @@ $(() => {
         allowClear: true,
         ajax: {
             url: "{{ route('directors.select') }}",
+            dataType: 'json',
+            delay: 250,
+            processResults: function(data) {
+                return {
+                    results: $.map(data, function(item) {
+                        return {
+                            text: item.name,
+                            id: item.id
+                        }
+                    })
+                };
+            }
+        }
+    });
+
+    // Select2 Single : Directors
+    $('#year').select2({
+        theme: 'bootstrap4',
+        language: "{{ app()->getLocale() }}",
+        allowClear: true,
+        ajax: {
+            url: "{{ route('years.select') }}",
             dataType: 'json',
             delay: 250,
             processResults: function(data) {

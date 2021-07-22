@@ -37,6 +37,13 @@ return [
             'ratings.show',
             'ratings.delete',
         ],
+        'manage_years' => [
+            'years.index',
+            'years.create',
+            'years.edit',
+            'years.show',
+            'years.delete',
+        ],
         'manage_roles' => [
             'roles.index',
             'roles.create',
