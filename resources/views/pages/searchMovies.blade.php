@@ -11,12 +11,16 @@
                 <hr class="bg-primary m-0 mb-2">
             </div>
             <div class="row no-gutters">
-                @foreach ($movies as $movie)
+                @forelse ($movies as $movie)
                 <div class="col-md-3 poster__container">
                     <img src="{{ $movie->poster }}" alt="{{ $movie->title }}" class="img-fluid poster__image">
                     {{-- <p class="poster__title">Black Widow</p> --}}
                 </div>
-                @endforeach
+                @empty
+                <div class="ml-2">
+                    <h5 class="text-secondary">Sorry, no movies were found.</h5>
+                </div>
+                @endforelse
             </div>
             @if ($movies->hasPages())
             <div class="d-flex mt-2">

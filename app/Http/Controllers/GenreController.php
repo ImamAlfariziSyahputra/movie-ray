@@ -66,7 +66,8 @@ class GenreController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'name' => 'required|string|min:3|max:20|unique:genres,name',
+                'name' => 'required|string|min:3|max:20',
+                'slug' => 'required|unique:genres,slug',
             ],
             [],
             [],
@@ -75,10 +76,11 @@ class GenreController extends Controller
         if($validator->fails()) {
             return redirect()->back()->withInput($request->all())->withErrors($validator);
         }
-
+        // dd($request->slug);
         try {
             Genre::create([
                 'name' => $request->name,
+                'slug' => $request->slug,
             ]);
 
             Alert::success('Add Genre', 'Success');
@@ -125,7 +127,8 @@ class GenreController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'name' => 'required|string|min:3|max:20|unique:genres,name,'.$genre->id,
+                'name' => 'required|string|min:3|max:20,'.$genre->id,
+                'slug' => 'required|string|min:3|max:20|unique:genres,slug,'.$genre->id,
             ],
             [],
             [],
@@ -138,6 +141,7 @@ class GenreController extends Controller
         try {
             $genre->update([
                 'name' => $request->name,
+                'slug' => $request->slug,
             ]);
 
             Alert::success('Edit Genre', 'Success');

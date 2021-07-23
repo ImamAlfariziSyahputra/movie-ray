@@ -28,7 +28,7 @@ Auth::routes();
 Route::get('/', [PagesController::class, 'home'])->name('pages.home');
 Route::get('/search', [PagesController::class, 'searchMovies'])->name('pages.searchMovies');
 Route::get('/detail/{movie}', [PagesController::class, 'detailMovie'])->name('pages.detailMovie');
-Route::get('/genre/{genreName}', [PagesController::class, 'genreMovies'])->name('pages.genreMovies');
+Route::get('/genre/{genreSlug}', [PagesController::class, 'genreMovies'])->name('pages.genreMovies');
 Route::get('/year/{yearName}', [PagesController::class, 'yearMovies'])->name('pages.yearMovies');
 
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function() {

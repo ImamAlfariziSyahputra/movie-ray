@@ -16,7 +16,7 @@
                 {{-- Desc --}}
                 <p>{{ $movie->desc }}</p>
                 <div class="">
-                    <span class="mr-2">{{ $movie->year }}</span>
+                    <span class="mr-2">{{ $movie->year->name }}</span>
                     <span class="mr-2">US</span>
                     <span class="mr-2">{{ $movie->duration }} minutes</span>
                 </div>
@@ -33,7 +33,10 @@
                 </div>
                 <div class="category d-flex flex-wrap">
                     @foreach ($movie->genre as $genre)
-                        <a href="" class="btn btn-dark mr-2 mb-2">{{ $genre->name }}</a>
+                        <a 
+                            href="{{ route('pages.genreMovies', $genre->name) }}" 
+                            class="btn btn-dark mr-2 mb-2">{{ $genre->name }}
+                        </a>
                     @endforeach
                 </div>
             </div>

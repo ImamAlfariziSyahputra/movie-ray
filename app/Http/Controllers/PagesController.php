@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    private $perPage = 4;
+    private $perPage = 8;
 
     public function home()
     {
@@ -54,16 +54,17 @@ class PagesController extends Controller
         ]);
     }
 
-    public function genreMovies($genreName)
+    public function genreMovies($genreSlug)
     {
         
         // $movies = Movie::with('genre')->paginate($this->perPage);
 
-        $movies = Movie::whereHas('genre', function ($query) use ($genreName) {
-            $query->where('name', $genreName);
+        $movies = Movie::whereHas('genre', function ($query) use ($genreSlug) {
+            $query->where('slug', $genreSlug);
         })->paginate($this->perPage);
         $genres = Genre::all();
         $years = Year::all();
+        $choosenGenre = Genre::where('slug', $genreSlug)->first();
 
         // dd($genres->movie);
 
@@ -71,7 +72,7 @@ class PagesController extends Controller
             'movies' => $movies->withQueryString(),
             'genres' => $genres,
             'years' => $years,
-            'choosenGenre' => $genreName,
+            'choosenGenre' => $choosenGenre,
         ]);
     }
 

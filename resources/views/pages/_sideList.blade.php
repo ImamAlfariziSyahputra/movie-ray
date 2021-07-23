@@ -9,7 +9,7 @@
             <div class="genres__item">
                 {{-- Genre Item --}}
                 <a 
-                    href="{{ route('pages.genreMovies', $genre->name) }}" 
+                    href="{{ route('pages.genreMovies', $genre->slug) }}" 
                     class="d-flex justify-content-between"
                 >
                     <div class="d-flex align-items-center">
